@@ -1,0 +1,13 @@
+@import "./global";
+
+.primary-color {
+  color: $secondary-color;
+}
+
+.back-link {
+  display: block;
+  color: $primary-color;
+  text-decoration: underline;
+  font-size: $s-font;
+  margin: $xs-spacing auto;
+}

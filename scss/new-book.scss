@@ -1,0 +1,59 @@
+@import "./global";
+
+form {
+  margin: $s-spacing auto;
+  max-width: 25rem;
+
+  #result {
+    font-weight: bold;
+    font-size: $xs-font;
+    text-align: center;
+  }
+}
+
+form div {
+  display: block;
+  margin-top: 1rem;
+
+  > span {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  > input {
+    padding: 12px 20px 12px 6px;
+    border: 1px solid $primary-color;
+    border-radius: 4px;
+    box-sizing: border-box;
+    width: 100%;
+  }
+}
+
+.form-field-hint {
+  display: block;
+  color: #3c3c3c;
+}
+
+.form-actions {
+  margin-top: 1rem;
+}
+
+input[type="submit"] {
+  background-color: $primary-color-invert;
+  border: solid 3px $primary-color;
+  border-radius: 4px;
+  padding: $xxs-spacing;
+  width: 100%;
+  height: $m-spacing;
+  font-size: $s-font;
+  margin-top: $xs-spacing;
+
+  &:hover {
+    background-color: $background-light;
+  }
+
+  &:disabled {
+    background-color: $primary-color-invert;
+    border: solid 3px $background-light;
+  }
+}

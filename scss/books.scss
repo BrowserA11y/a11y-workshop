@@ -1,0 +1,82 @@
+@import "./global";
+
+input {
+  border-color: $secondary-color;
+  border-width: 0.1rem;
+  border-style: solid;
+  padding: $xxs-spacing;
+  padding-right: $s-spacing;
+  height: 3rem;
+  min-width: 20rem;
+  vertical-align: middle;
+  background: no-repeat url(../assets/search.svg);
+  background-size: $s-spacing;
+  background-position: right center;
+  border-radius: 4px;
+}
+
+#searchStatus {
+  margin-bottom: $s-spacing;
+}
+
+.books {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(18rem, 1fr)
+  ); //https://caniuse.com/?search=minmax
+  grid-gap: $xs-spacing;
+}
+article {
+  display: block;
+  background-color: $primary-color-invert;
+  border-color: $primary-color;
+  border-width: 0.1rem;
+  border-style: solid;
+  border-radius: 4px;
+  max-height: 350px;
+  overflow: hidden;
+
+  &:hover {
+    border-color: $background-light;
+    border-width: 0.2rem;
+
+    .book__title {
+      background-color: $background-light;
+    }
+  }
+}
+
+.book__text {
+  padding: $xxs-spacing;
+}
+
+.book__title {
+  margin: 0;
+  height: $m-spacing;
+  padding: 0.8rem;
+  border-color: $primary-color;
+  border-width: 0.1rem;
+  border-bottom-style: solid;
+  background-color: $secondary-color;
+  color: $primary-color-invert;
+
+  p {
+    margin: 0;
+    font-size: $s-font;
+  }
+}
+
+.book__author {
+  height: 2rem;
+}
+.book__abstract {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.book__details {
+  display: block;
+  height: 2.5rem;
+  color: $secondary-color;
+}
