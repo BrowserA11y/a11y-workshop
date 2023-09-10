@@ -61,6 +61,11 @@ article {
   background-color: $secondary-color;
   color: $primary-color-invert;
 
+  h2 {
+    font-size: $xs-font;
+    margin-top: 0;
+  }
+
   p {
     margin: 0;
     font-size: $s-font;
