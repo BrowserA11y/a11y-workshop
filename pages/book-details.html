@@ -46,19 +46,51 @@
     <header>
       <a class="skiplink" href="#content">Skip to main content</a>
       <div class="visible-header">
-        <nav class="desktop-navigation">
-          <ul class="desktop-navigation__links">
-            <li class="navigation-item">
-              <a href="../pages/new-book.html">New book</a>
-            </li>
-            <li class="navigation-item">
-              <a href="../index.html">Books</a>
-            </li>
-            <li class="navigation-item">
-              <a href="../pages/about.html">About Accessible Reads</a>
-            </li>
-          </ul>
+        <nav>
+          <!--Accessible hamburger-->
+          <!--https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/examples/menu-button-links/#ex_label-->
+          <div class="mobile-menu">
+            <button
+              type="button"
+              id="menubutton"
+              class="hamburger"
+              aria-label="Accessible Reads Quick Links"
+              aria-haspopup="true"
+              aria-controls="menuContent"
+            >
+              ☰
+            </button>
+
+            <ul id="menuContent" class="hamburgerContent" role="menu">
+              <li role="none" class="menu-item">
+                <a role="menuitem" href="../pages/new-book.html">New book</a>
+              </li>
+              <li role="none" class="menu-item">
+                <a role="menuitem" href="../index.html">Books</a>
+              </li>
+              <li role="none" class="menu-item">
+                <a role="menuitem" href="../pages/about.html"
+                  >About Accessible Reads</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!--Accessible desktop navigation-->
+          <div class="desktop-navigation">
+            <ul class="desktop-navigation__links">
+              <li class="navigation-item">
+                <a href="../pages/new-book.html">New book</a>
+              </li>
+              <li class="navigation-item">
+                <a href="../index.html">Books</a>
+              </li>
+              <li class="navigation-item">
+                <a href="../pages/about.html">About Accessible Reads</a>
+              </li>
+            </ul>
+          </div>
         </nav>
+
         <div class="logo">
           <img alt="" src="../assets/a11y.png" />
           <span class="logo__text">
@@ -169,4 +201,5 @@
     </footer>
   </body>
   <script src="../scripts/get-book-details.js"></script>
+  <script src="../scripts/global.js"></script>
 </html>
