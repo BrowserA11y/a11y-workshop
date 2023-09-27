@@ -16,11 +16,11 @@
   </head>
 
   <body>
-    <div class="header">
+    <header>
       <a class="skiplink" href="#content">Skip to main content</a>
 
       <div class="visible-header">
-        <div class="desktop-navigation">
+        <nav class="desktop-navigation">
           <ul class="desktop-navigation__links">
             <li class="navigation-item" aria-current="page">
               <a href="../pages/new-book.html">New book</a>
@@ -32,7 +32,7 @@
               <a href="../pages/about.html">About Accessible Reads</a>
             </li>
           </ul>
-        </div>
+        </nav>
         <div class="logo">
           <img alt="" src="../assets/a11y.png" />
           <span class="logo__text">
@@ -40,8 +40,9 @@
           >
         </div>
       </div>
-    </div>
-    <div class="content" id="content">
+    </header>
+
+    <main id="content">
       <h1>Add a new book to your collection</h1>
 
       <form id="new-book">
@@ -70,9 +71,9 @@
           <input type="submit" value="Save" />
         </div>
       </form>
-    </div>
+    </main>
 
-    <div class="footer">
+    <footer>
       <div class="footer__imprint">
         <div class="footer__links">
           <a href="https://browserperson.medium.com/" target="_blank">
@@ -161,7 +162,7 @@
           <br />Licensed under MIT
         </p>
       </div>
-    </div>
+    </footer>
   </body>
   <script src="../scripts/new-book.js"></script>
 </html>
