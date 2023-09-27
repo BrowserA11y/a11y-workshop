@@ -97,10 +97,11 @@ body {
   &:first-child {
     padding-left: 0;
   }
-}
-.navigation-item .current-page {
-  text-decoration: underline 3px;
-  text-underline-offset: $xxs-spacing;
+
+  &[aria-current="page"] {
+    text-decoration: underline 3px;
+    text-underline-offset: $xxs-spacing;
+  }
 }
 
 .navigation-item a {
