@@ -79,27 +79,53 @@
       <h1>Add a new book to your collection</h1>
 
       <form id="new-book">
-        <div>
-          <span>ISBN</span>
-          <input id="isbn" required />
-        </div>
-        <div>
-          <span>Title</span>
-          <input id="title" />
-        </div>
-        <div>
-          <span>Author</span>
-          <input id="author" required />
-        </div>
-        <div>
+        <label class="form-field">
+          <span>ISBN (required)</span>
+
+          <input
+            id="isbn"
+            required
+            oninvalid="this.setCustomValidity('ISBN cannot be blank')"
+            oninput="this.setCustomValidity('')"
+          />
+        </label>
+
+        <label class="form-field">
+          <span>Title (required)</span>
+
+          <input
+            id="title"
+            required
+            oninvalid="this.setCustomValidity('Title cannot be blank')"
+            oninput="this.setCustomValidity('')"
+          />
+        </label>
+
+        <label class="form-field">
+          <span>Author (required)</span>
+
+          <input
+            id="author"
+            required
+            oninvalid="this.setCustomValidity('Author cannot be blank')"
+            oninput="this.setCustomValidity('')"
+          />
+        </label>
+
+        <label class="form-field">
           <span>Cover-URL</span>
+
           <input id="cover" />
-        </div>
-        <div>
+        </label>
+
+        <label class="form-field">
           <span>Abstract</span>
+
           <input id="abstract" />
-        </div>
+        </label>
+
         <div id="result"></div>
+
         <div class="form-actions">
           <input type="submit" value="Save" />
         </div>

@@ -11,7 +11,7 @@ form {
   }
 }
 
-form div {
+form label {
   display: block;
   margin-top: 1rem;
 
@@ -56,4 +56,8 @@ input[type="submit"] {
     background-color: $primary-color-invert;
     border: solid 3px $background-light;
   }
+}
+
+input.validated:not(:focus):not(:placeholder-shown):invalid {
+  border-color: red !important;
 }

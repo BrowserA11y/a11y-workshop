@@ -1,3 +1,14 @@
+const elementsWithValidaton = document.querySelectorAll("input[required]");
+const resultElement = document.getElementById("result");
+const form = document.getElementById("new-book");
+
+if (elementsWithValidaton)
+  elementsWithValidaton.forEach((element) => {
+    element.addEventListener("blur", function () {
+      element.classList.add("validated");
+    });
+  });
+
 if (form) {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
