@@ -9,6 +9,12 @@
   padding: $xs-spacing;
 }
 
+.mission_video iframe {
+  aspect-ratio: 16 / 9; /* Not supported in IE*/
+  width: 100%;
+  margin-bottom: $s-spacing;
+}
+
 #dailyVisitors {
   border: $secondary-color solid 0.3rem;
   background-color: $primary-color-invert;
