@@ -13,6 +13,33 @@ fetch("http://localhost:4730/books")
     document.getElementById("content").appendChild(errorMessage);
   });
 
+const searchInput = document.querySelector("input");
+const searchStatus = document.getElementById("searchStatus");
+searchInput.addEventListener("input", (e) => {
+  //https://stackoverflow.com/questions/2977023/how-do-you-detect-the-clearing-of-a-search-html5-input
+  let value = e.currentTarget.value;
+  if (value && value.trim().length > 0) {
+    searchTerm = value.trim().toLowerCase();
+    const filteredBooks = books.filter((book) =>
+      this.matchBook(book, searchTerm)
+    );
+    displayResults(filteredBooks);
+    searchStatus.innerHTML = `<p role="status">We've found ${filteredBooks.length} books for "${searchTerm}"</p>`;
+  } else {
+    displayResults(books);
+    searchStatus.innerHTML = "";
+    return;
+  }
+});
+
+function matchBook(book, searchTerm) {
+  return Object.keys(book)
+    .filter((key) => typeof book[key] === "string")
+    .some((key) =>
+      book[key].toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())
+    );
+}
+
 function displayResults(books) {
   const articles = books
     .map((book) => {

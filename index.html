@@ -67,7 +67,23 @@
 
     <main id="content">
       <h1>Our books</h1>
-      <!--Book search-->
+      <!--https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/search-->
+      <!--https://codepen.io/nedgip/pen/xxZgvjv-->
+      <!--Alternative. https://www.scottohara.me/blog/2022/02/05/dynamic-results.html-->
+      <form onSubmit="return false;">
+        <div role="search">
+          <label class="visually-hidden" for="bookSearch"
+            >Start searching for books here</label
+          >
+          <input
+            type="search"
+            style="text-indent: 17px"
+            id="bookSearch"
+            placeholder="Start searching for books here"
+          />
+          <div id="searchStatus"></div>
+        </div>
+      </form>
     </main>
 
     <footer>
