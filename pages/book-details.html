@@ -104,7 +104,35 @@
       <h1>Book details</h1>
       <div id="bookDetails"></div>
 
-      <!--5 star rating-->
+      <!--https://dev.to/grahamthedev/5-star-rating-system-actually-accessible-no-js-no-wai-aria-3idl-->
+      <!--https://jsfiddle.net/s0c35pqw/-->
+      <!--Alternative: https://www.w3.org/WAI/tutorials/forms/custom-controls/-->
+
+      <fieldset class="star-rating">
+        <legend>Rate this book:</legend>
+        <div>
+          <input type="radio" name="rating" value="1" id="rating1" />
+          <label for="rating1">
+            <span>1 star</span>
+          </label>
+          <input type="radio" name="rating" value="2" id="rating2" />
+          <label for="rating2">
+            <span>2 stars</span>
+          </label>
+          <input type="radio" name="rating" value="3" id="rating3" />
+          <label for="rating3">
+            <span>3 stars</span>
+          </label>
+          <input type="radio" name="rating" value="4" id="rating4" />
+          <label for="rating4">
+            <span>4 stars</span>
+          </label>
+          <input type="radio" name="rating" value="5" id="rating5" />
+          <label for="rating5">
+            <span>5 stars</span>
+          </label>
+        </div>
+      </fieldset>
 
       <a class="back-link" href="../index.html">&#8592; Back to all books</a>
     </main>
