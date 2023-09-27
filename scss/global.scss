@@ -44,6 +44,21 @@ body {
   height: 100%;
 }
 
+.skiplink {
+  position: absolute;
+  left: -100000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+
+  &:focus {
+    position: static;
+    width: auto;
+    height: auto;
+  }
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
