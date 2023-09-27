@@ -35,7 +35,8 @@ article {
   border-style: solid;
   border-radius: 4px;
 
-  &:hover {
+  &:hover,
+  &:focus-within {
     border-color: $secondary-color;
     border-width: 0.2rem;
 
