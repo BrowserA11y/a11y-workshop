@@ -7,6 +7,8 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed:semantics": "PW_SLOW_MO=500 playwright test e2e/semantics.spec.js --headed --workers=1",
+    "playwright:install": "playwright install chromium",
     "lint": "eslint \"**/*.{html,js,mjs}\"",
     "lint:fix": "eslint \"**/*.{html,js,mjs}\" --fix",
     "format": "prettier --write .",

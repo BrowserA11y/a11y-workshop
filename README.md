@@ -81,13 +81,38 @@ Playwright tests cover:
 - Aria snapshots
 - Reflow (320px), text resize, and text spacing
 
-The Playwright config starts `python3 -m http.server 8080` automatically. Install browsers once, then run:
+The Playwright config starts `python3 -m http.server 8080` automatically — you do **not** need to run `python3 -m http.server 8080` yourself (if something is already on port 8080, Playwright reuses it).
+
+After `npm install`, install the browser binaries that match your `@playwright/test` version (required once per machine, and again after Playwright upgrades):
 
 ```bash
-npm install
-npx playwright install chromium
-npm run test:e2e
+npm run playwright:install
+# or: npx playwright install chromium
 ```
+
+Then run tests:
+
+```bash
+npm run test:e2e
+npm run test:e2e:ui   # interactive UI mode
+npm run test:e2e:headed:semantics   # visible browser, full semantics file, no pauses
+npm run test:e2e:debug:semantics    # one books-page test, step-through debugger
+```
+
+**Debug mode (`test:e2e:debug:semantics`)** — `--debug` **pauses before each action** until you continue in the **Playwright Inspector** window (look for it behind your editor or in the Dock). Click **Resume** (▶) to run the next step; the terminal will sit idle until you do. The script runs a **single** test (`books page … appropriate h1`), not all 10 semantics tests.
+
+**Headed without pauses** — `npm run test:e2e:headed:semantics` opens Chromium and pauses **500 ms between actions** (`PW_SLOW_MO`). Slower or faster: `PW_SLOW_MO=1200 npm run test:e2e:headed:semantics` or `PW_SLOW_MO=0 npm run test:e2e` for full speed.
+
+**Playwright UI (`test:e2e:ui`)** — the right-hand browser is not a live window for the whole run. It shows a **snapshot for the step you select** in the middle “Actions” column:
+
+1. Run the suite (or one file) from the UI.
+2. Click a **single test** in the left list (not the file name only).
+3. In **Actions**, click a step such as `page.goto` or `locator.click`.
+4. Use **Before / Action / After** tabs to scrub that moment.
+
+If you only see `about:blank` and one line “Passed”, expand the test and pick a step — or re-run after pulling config that sets `trace: on` locally (traces power the UI preview).
+
+If you see `Executable doesn't exist at .../chromium_headless_shell-XXXX`, the cached browsers are out of date — run `npm run playwright:install` again.
 
 Some showcase demos intentionally break WCAG rules; those cases use Playwright’s `test.fail()` so the suite documents the failure without failing CI.
 
