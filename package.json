@@ -4,6 +4,8 @@
   "description": "Accessible Reads workshop — optional Playwright + axe scan fallback",
   "scripts": {
     "a11y:scan": "node scripts/a11y-scan.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "lint": "eslint \"**/*.{html,js,mjs}\"",
     "lint:fix": "eslint \"**/*.{html,js,mjs}\" --fix",
     "format": "prettier --write .",
@@ -14,7 +16,10 @@
     "@html-eslint/eslint-plugin": "^0.20.0",
     "@html-eslint/parser": "^0.20.0",
     "eslint": "^8.57.0",
+    "jsdom": "^30.1.1",
     "playwright": "^1.49.0",
-    "prettier": "^3.3.3"
+    "prettier": "^3.3.3",
+    "vitest": "^5.0.2",
+    "vitest-axe": "^0.1.0"
   }
 }

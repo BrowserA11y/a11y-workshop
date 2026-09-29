@@ -23,7 +23,7 @@ function filters() {
   };
 }
 
-function applyFilters(list, f) {
+export function applyFilters(list, f, wishlistSet = wishlist) {
   const query = f.search.trim().toLowerCase();
   const selected = CATALOG_GENRES.filter((g) => f.genres[g]);
   return list.filter((book) => {
@@ -32,7 +32,7 @@ function applyFilters(list, f) {
       book.title.toLowerCase().includes(query) ||
       (book.author || "").toLowerCase().includes(query);
     const matchesAvailability = !f.availableOnly || book.available !== false;
-    const matchesWishlist = !f.wishlistOnly || wishlist.has(book.isbn);
+    const matchesWishlist = !f.wishlistOnly || wishlistSet.has(book.isbn);
     const bookGenres = book.genres ?? [];
     const allSelected = selected.length === CATALOG_GENRES.length;
     const matchesGenre =
@@ -162,7 +162,9 @@ function bindFilters() {
   });
 }
 
-async function init() {
+export async function initBooksPage() {
+  const list = document.getElementById("books-list");
+  if (!list) return;
   books = await getAll();
   wishlist = getWishlist();
   bindFilters();
@@ -170,4 +172,4 @@ async function init() {
   render();
 }
 
-init();
+initBooksPage();
