@@ -12,7 +12,8 @@ If you prefer Angular (CDK, router, forms, ESLint), see [a11y-angular-workshop](
 - Interactive **showcases** under `showcases/` that demonstrate common a11y patterns and pitfalls
 - Shared layout, design tokens, and navigation
 - ESLint (HTML + JS) and Prettier, with VS Code format-on-save
-- Optional Playwright + axe scan script and sample MCP config
+- Unit tests (Vitest + vitest-axe) and E2E accessibility tests (Playwright + axe)
+- Sample MCP config for an optional accessibility scanner
 
 ## Topics covered
 
@@ -30,7 +31,7 @@ If you prefer Angular (CDK, router, forms, ESLint), see [a11y-angular-workshop](
 
 - A modern browser (Chrome, Firefox, Safari, or Edge)
 - Optional: a local static file server (modules and some APIs work best over `http://`, not `file://`)
-- For lint/format and the optional axe scan script: Node.js 18+
+- For lint/format and tests: Node.js 18+
 - Recommended editor extensions: [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
 ## Getting started
@@ -61,15 +62,34 @@ npm run format:check  # Prettier check only
 
 Workspace settings in [`.vscode/settings.json`](.vscode/settings.json) turn on **format on save** (Prettier) and ESLint validation for **HTML and JavaScript**. HTML rules come from [`@html-eslint`](https://github.com/yeonjun-in/@html-eslint) (see [`.eslintrc.js`](.eslintrc.js)).
 
-## Optional accessibility scan
+## Unit tests
 
-With a server running on port 8080:
+Vitest + jsdom tests cover store/filter logic, nav behavior, and sample axe checks with [vitest-axe](https://github.com/chaance/vitest-axe):
+
+```bash
+npm install
+npm test
+```
+
+## E2E accessibility tests
+
+Playwright tests cover:
+
+- axe-core scans of app and showcase pages (`@axe-core/playwright`)
+- Semantics (roles, names, landmarks)
+- Keyboard focus order and focus styles
+- Aria snapshots
+- Reflow (320px), text resize, and text spacing
+
+The Playwright config starts `python3 -m http.server 8080` automatically. Install browsers once, then run:
 
 ```bash
 npm install
 npx playwright install chromium
-npm run a11y:scan
+npm run test:e2e
 ```
+
+Some showcase demos intentionally break WCAG rules; those cases use Playwright’s `test.fail()` so the suite documents the failure without failing CI.
 
 MCP sample config: [`.mcp.json.example`](.mcp.json.example)
 
@@ -85,7 +105,9 @@ MCP sample config: [`.mcp.json.example`](.mcp.json.example)
 | `js/` | Page behavior, nav, resource links, books store |
 | `assets/` | Images and icons |
 | `data/` | Seed book data |
-| `scripts/` | Optional Playwright + axe scan |
+| `e2e/` | Playwright accessibility tests (axe, keyboard, reflow, …) |
+| `tests/` | Vitest unit tests |
+| `playwright.config.mjs` | Playwright E2E config (static server on :8080) |
 | `.eslintrc.js` / `.prettierrc.json` | Lint and format config |
 | `.vscode/settings.json` | Format on save + ESLint for HTML/JS |
 | `.mcp.json.example` | Sample MCP config for accessibility-scanner |
