@@ -1,0 +1,182 @@
+
+.books-filters {
+  display: grid;
+  gap: var(--spacing-xxs);
+  border: 2px solid var(--color-secondary);
+  padding: var(--spacing-xs);
+  max-width: 40rem;
+  margin-bottom: var(--spacing-xs);
+}
+
+.books-filters__search {
+  display: grid;
+  gap: 0.35rem;
+  font-weight: bold;
+}
+
+.books-filters__search input {
+  padding: 0.5rem;
+  font: inherit;
+  border: 2px solid var(--color-secondary);
+}
+
+.books-filters__hint {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.books-filters__checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.books-filters__genres {
+  border: 1px solid var(--color-border);
+  padding: var(--spacing-xxs);
+  margin: 0;
+}
+
+.books-filters__genres legend {
+  font-weight: bold;
+  padding: 0 0.35rem;
+}
+
+.books-empty {
+  margin: var(--spacing-xxs) 0;
+}
+
+.books-empty--visible {
+  background: var(--color-background-muted);
+  color: var(--color-text-muted);
+  padding: var(--spacing-xxs) var(--spacing-xs);
+}
+
+.books {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--spacing-xs);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+}
+
+.books > li {
+  display: flex;
+}
+
+.book-card {
+  border: 0.1rem solid var(--color-primary);
+  padding: var(--spacing-xxs);
+  display: grid;
+  grid-template-rows: auto auto 1fr auto auto;
+  gap: 0.5rem;
+  width: 100%;
+  background: var(--color-primary-invert);
+}
+
+.book-card:hover,
+.book-card:focus-within {
+  border-width: 0.2rem;
+}
+
+.book__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  align-items: start;
+}
+
+.book__title {
+  margin: 0;
+  font-size: var(--font-size-s);
+  flex: 1;
+}
+
+.book__title-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.book__header-actions {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.book__wishlist,
+.book__remove {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: none;
+  background: var(--color-secondary);
+  color: var(--color-primary-invert);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+
+.book__wishlist-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+.book__wishlist[aria-pressed="true"] .book__wishlist-icon {
+  fill: currentColor;
+}
+
+.book__text {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+.book__abstract-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.book__details {
+  color: var(--color-secondary);
+  font-weight: bold;
+}
+
+.book__confirm-dialog {
+  border: 3px solid var(--color-secondary);
+  padding: var(--spacing-xs);
+  max-width: 24rem;
+}
+
+.book__confirm-dialog::backdrop {
+  background: var(--color-backdrop);
+}
+
+.book__confirm-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  margin-top: var(--spacing-xxs);
+}
+
+.book__confirm-action {
+  font: inherit;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border: 2px solid var(--color-secondary);
+  background: var(--color-primary-invert);
+}
+
+.book__confirm-action--danger {
+  background: var(--color-danger);
+  color: var(--color-primary-invert);
+  border-color: var(--color-danger);
+}

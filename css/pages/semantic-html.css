@@ -1,0 +1,76 @@
+.price__strike {
+  text-decoration: line-through;
+}
+
+.price__new {
+  font-weight: 700;
+  margin-inline-start: 0.35em;
+}
+
+.price del {
+  margin-inline-end: 0.35em;
+}
+
+.price ins {
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.demo-list {
+  margin: 0;
+  padding-inline-start: 1.25rem;
+}
+
+.demo-list__host {
+  display: block;
+}
+
+.demo-fieldset {
+  margin: 0;
+  padding: var(--spacing-xxs);
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxs);
+}
+
+.demo-fieldset > div {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxs);
+}
+
+.demo-fieldset legend {
+  padding-inline: 0.25rem;
+  font-weight: 700;
+}
+
+.demo-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-footer);
+}
+
+.demo-table__invalid-nest {
+  display: contents;
+}
+
+.demo-table caption {
+  text-align: start;
+  font-weight: 700;
+  font-size: var(--font-size-footer);
+  margin-bottom: 0.35rem;
+}
+
+.demo-table--caption-bottom caption {
+  caption-side: bottom;
+  margin-bottom: 0;
+  margin-top: 0.35rem;
+}
+
+.demo-table th,
+.demo-table td {
+  border: 1px solid var(--color-border);
+  padding: 0.35rem 0.5rem;
+  text-align: start;
+}

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Keyboard navigation</title>
+  <link rel="icon" href="../assets/favicon/favicon.ico" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/utilities.css" />
+  <link rel="stylesheet" href="../css/layout.css" />
+  <link rel="stylesheet" href="../css/pages/showcase-page.css" />
+  <link rel="stylesheet" href="../css/pages/keyboard-navigation.css" />
+</head>
+<body>
+<header>
+  <a class="skip-link" href="#content">Skip to main content</a>
+  <div class="header__content">
+    <nav aria-label="Accessible Reads" class="nav">
+      <button type="button" id="menubutton" class="nav__toggle"
+        aria-label="Accessible Reads Quick Links"
+        aria-controls="menuContent"
+        aria-expanded="false">☰</button>
+      <ul id="menuContent" class="nav__list">
+        <li class="nav__item"><a class="nav__link" href="../pages/new-book.html">New book</a></li>
+        <li class="nav__item"><a class="nav__link" href="../pages/books.html">Books</a></li>
+        <li class="nav__item"><a class="nav__link" href="../pages/about.html">About Accessible Reads</a></li>
+        <li class="nav__item"><a class="nav__link" href="../showcases/index.html">Showcases</a></li>
+      </ul>
+    </nav>
+    <div class="logo">
+      <img class="logo__image" alt="" src="../assets/a11y.png" width="80" height="80" />
+      <span class="logo__text"><span class="text-secondary">Accessible</span> Reads</span>
+    </div>
+  </div>
+</header>
+<main id="content" tabindex="-1">
+
+<section class="intro">
+  <p>
+    <a class="back-link" href="index.html">
+      <span class="back-link__arrow" aria-hidden="true">←</span>
+      Back to Showcases
+    </a>
+  </p>
+
+  <h1 tabindex="-1">Keyboard navigation</h1>
+
+  <p>
+    Keyboard users move with Tab / Shift+Tab and activate with Enter or Space.
+    What can receive focus depends on semantics and
+    <code>tabindex</code> — “focusable” and “tabbable” are not the same thing.
+  </p>
+</section>
+
+<section class="demo" aria-labelledby="demo-focusable-kinds">
+  <h2 id="demo-focusable-kinds">Tabbable vs focusable</h2>
+  <p>
+    Plain text is neither in the tab order nor programmatically focusable.
+    <code>tabindex="-1"</code> allows <code>element.focus()</code> (and skip
+    targets) without adding the element to the Tab sequence.
+    <code>tabindex="0"</code> puts a non-interactive element in the natural tab
+    order — use sparingly, and only when it must be keyboard-operable.
+  </p>
+
+  <div class="demo__pair demo__pair--three">
+    <div class="demo__example">
+      <h3>Neither</h3>
+      <p class="focus-sample">I’m neither tabbable nor focusable</p>
+    </div>
+
+    <div class="demo__example">
+      <h3>Only focusable</h3>
+      <p class="focus-sample focus-sample--focusable" id="only-focusable" tabindex="-1">
+        I’m only focusable
+      </p>
+      <div class="demo__actions">
+        <button type="button" id="focus-paragraph">Focus this paragraph</button>
+      </div>
+    </div>
+
+    <div class="demo__example">
+      <h3>Tabbable and focusable</h3>
+      <p class="focus-sample focus-sample--focusable" tabindex="0">
+        I’m both tabbable and focusable
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="demo" aria-labelledby="demo-tabindex-values">
+  <h2 id="demo-tabindex-values">Positive <code>tabindex</code> reorders focus</h2>
+  <p>
+    Positive values put those elements first in the page’s Tab sequence, sorted
+    by number — before anything with <code>0</code> or no
+    <code>tabindex</code>. That almost always fights the visual order. Prefer
+    source order (and CSS for layout) instead of
+    <code>tabindex="1"</code>+.
+  </p>
+
+  <ol class="tabindex-list" aria-label="Demo tab order with positive values">
+    <li>
+      <a href="index.html" tabindex="3">Link with tabindex=&quot;3&quot;</a>
+    </li>
+    <li>
+      <button type="button" tabindex="1">Button with tabindex=&quot;1&quot;</button>
+    </li>
+    <li>
+      <a href="index.html" tabindex="2">Link with tabindex=&quot;2&quot;</a>
+    </li>
+    <li>
+      <button type="button">Native button (no tabindex)</button>
+    </li>
+  </ol>
+</section>
+
+<section class="demo" aria-labelledby="demo-click-targets">
+  <h2 id="demo-click-targets">Click handlers need a real control</h2>
+  <p>
+    A <code>div</code> with only a click handler is mouse-friendly and
+    keyboard-hostile: it is not focusable, and Enter / Space do nothing. Native
+    <code>button</code> and links with <code>href</code> already participate in
+    the tab order and expose the right activation keys.
+  </p>
+
+  <div class="demo__pair demo__pair--three">
+    <div class="demo__example">
+      <h3>Div + click only</h3>
+      <div class="fake-control fake-control--broken" data-click-alert>Looks clickable</div>
+    </div>
+
+    <div class="demo__example">
+      <h3>Native button</h3>
+      <button type="button" data-click-alert>Real button</button>
+    </div>
+
+    <div class="demo__example">
+      <h3>Link with href</h3>
+      <a href="index.html" data-click-alert data-prevent-nav>Real link</a>
+    </div>
+  </div>
+
+  <div class="demo__example demo__example--solo">
+    <h3>Optional: role=button still needs keys</h3>
+    <div
+      class="fake-control"
+      role="button"
+      tabindex="0"
+      data-click-alert
+      data-role-button
+    >
+      Div as button (ARIA + keys)
+    </div>
+  </div>
+</section>
+
+<section class="demo" aria-labelledby="demo-outlines">
+  <h2 id="demo-outlines">Focus outlines</h2>
+  <p>
+    Tab through these buttons. Removing the outline
+    (<code>0</code>, <code>none</code>, or <code>transparent</code>) hides
+    keyboard focus unless you replace it. Prefer a visible custom outline —
+    optionally with offset, a second ring, or
+    <code>currentColor</code> so it tracks the control’s text color.
+  </p>
+
+  <div class="outline-grid">
+    <div class="demo__example">
+      <h3><code>outline: 0</code></h3>
+      <button type="button" class="outline-demo outline-demo--zero">Focus me</button>
+    </div>
+
+    <div class="demo__example">
+      <h3><code>outline: none</code></h3>
+      <button type="button" class="outline-demo outline-demo--none">Focus me</button>
+    </div>
+
+    <div class="demo__example">
+      <h3><code>outline: transparent</code></h3>
+      <button type="button" class="outline-demo outline-demo--transparent">Focus me</button>
+    </div>
+
+    <div class="demo__example">
+      <h3>Defined outline</h3>
+      <button type="button" class="outline-demo outline-demo--defined">Focus me</button>
+    </div>
+
+    <div class="demo__example">
+      <h3>Double outline</h3>
+      <div class="outline-bg-pair">
+        <div class="outline-bg outline-bg--light">
+          <button type="button" class="outline-demo outline-demo--double">On light</button>
+        </div>
+        <div class="outline-bg outline-bg--dark">
+          <button type="button" class="outline-demo outline-demo--double">On dark</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo__example">
+      <h3><code>box-shadow</code></h3>
+      <button type="button" class="outline-demo outline-demo--shadow">Focus me</button>
+    </div>
+
+    <div class="demo__example">
+      <h3><code>outline-offset</code></h3>
+      <button type="button" class="outline-demo outline-demo--offset">Focus me</button>
+    </div>
+
+    <div class="demo__example">
+      <h3><code>currentColor</code></h3>
+      <div class="demo__actions">
+        <button type="button" class="outline-demo outline-demo--current">Outside</button>
+        <button type="button" class="outline-demo outline-demo--current-inset">Inside</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="demo" aria-labelledby="demo-focus-pseudos">
+  <h2 id="demo-focus-pseudos">
+    <code>:focus</code>, <code>:focus-visible</code>, and
+    <code>:focus-within</code>
+  </h2>
+  <p>
+    <code>:focus</code> styles appear for mouse and keyboard.
+    <code>:focus-visible</code> targets keyboard (and other non-pointer)
+    focus. <code>:focus-within</code> styles an ancestor while a descendant
+    has focus — useful for cards and field groups.
+  </p>
+
+  <div class="demo__pair demo__pair--three">
+    <div class="demo__example">
+      <h3><code>:focus</code></h3>
+      <button type="button" class="pseudo-demo pseudo-demo--focus">Click or Tab</button>
+    </div>
+
+    <div class="demo__example">
+      <h3><code>:focus-visible</code></h3>
+      <button type="button" class="pseudo-demo pseudo-demo--focus-visible">Click or Tab</button>
+    </div>
+
+    <div class="demo__example">
+      <h3><code>:focus-within</code></h3>
+      <div class="focus-within-card">
+        <label for="focus-within-input">Search shelf</label>
+        <input id="focus-within-input" type="search" name="shelf-search" autocomplete="off" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<aside class="info-box" aria-label="Related resources">
+  <ul class="info-box__list">
+      <li>
+        <a class="info-box__link" href="https://www.w3.org/WAI/perspective-videos/keyboard/" target="_blank" rel="noopener noreferrer">
+          Keyboard compatibility (W3C WAI perspective video)
+          <svg class="info-box__external-icon" role="img" aria-label="(opens in a new tab)" focusable="false" viewBox="0 0 24 24" width="16" height="16">
+            <title>(opens in a new tab)</title>
+            <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="info-box__link" href="https://webaim.org/techniques/keyboard/" target="_blank" rel="noopener noreferrer">
+          Keyboard Accessibility (WebAIM)
+          <svg class="info-box__external-icon" role="img" aria-label="(opens in a new tab)" focusable="false" viewBox="0 0 24 24" width="16" height="16">
+            <title>(opens in a new tab)</title>
+            <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="info-box__link" href="https://css-tricks.com/a-complete-guide-to-links-and-buttons/#comment-1754410" target="_blank" rel="noopener noreferrer">
+          A Complete Guide to Links and Buttons (CSS-Tricks)
+          <svg class="info-box__external-icon" role="img" aria-label="(opens in a new tab)" focusable="false" viewBox="0 0 24 24" width="16" height="16">
+            <title>(opens in a new tab)</title>
+            <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="info-box__link" href="https://www.smashingmagazine.com/2022/11/guide-keyboard-accessibility-html-css-part1/" target="_blank" rel="noopener noreferrer">
+          A Guide To Keyboard Accessibility: HTML And CSS (Smashing Magazine)
+          <svg class="info-box__external-icon" role="img" aria-label="(opens in a new tab)" focusable="false" viewBox="0 0 24 24" width="16" height="16">
+            <title>(opens in a new tab)</title>
+            <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="info-box__link" href="https://yatil.net/blog/focusable-ui-elements" target="_blank" rel="noopener noreferrer">
+          Two different kinds of “focusable” UI elements (Eric Eggert)
+          <svg class="info-box__external-icon" role="img" aria-label="(opens in a new tab)" focusable="false" viewBox="0 0 24 24" width="16" height="16">
+            <title>(opens in a new tab)</title>
+            <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="info-box__link" href="https://betterprogramming.pub/how-to-turn-a-div-into-an-accessible-button-in-react-fbf236283d6d" target="_blank" rel="noopener noreferrer">
+          How to Turn a Div Into an Accessible Button (Better Programming)
+          <svg class="info-box__external-icon" role="img" aria-label="(opens in a new tab)" focusable="false" viewBox="0 0 24 24" width="16" height="16">
+            <title>(opens in a new tab)</title>
+            <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="info-box__link" href="https://allyjs.io/tests/focus-outline-styles/index.html#style=focus" target="_blank" rel="noopener noreferrer">
+          Focus outline styles comparison (ally.js)
+          <svg class="info-box__external-icon" role="img" aria-label="(opens in a new tab)" focusable="false" viewBox="0 0 24 24" width="16" height="16">
+            <title>(opens in a new tab)</title>
+            <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="info-box__link" href="https://thisthat.dev/border-vs-outline/" target="_blank" rel="noopener noreferrer">
+          Border vs outline (thisthat.dev)
+          <svg class="info-box__external-icon" role="img" aria-label="(opens in a new tab)" focusable="false" viewBox="0 0 24 24" width="16" height="16">
+            <title>(opens in a new tab)</title>
+            <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="info-box__link" href="https://www.outlinenone.com" target="_blank" rel="noopener noreferrer">
+          Don’t remove outline (outlinenone.com)
+          <svg class="info-box__external-icon" role="img" aria-label="(opens in a new tab)" focusable="false" viewBox="0 0 24 24" width="16" height="16">
+            <title>(opens in a new tab)</title>
+            <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="info-box__link" href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:focus-visible" target="_blank" rel="noopener noreferrer">
+          :focus-visible (MDN)
+          <svg class="info-box__external-icon" role="img" aria-label="(opens in a new tab)" focusable="false" viewBox="0 0 24 24" width="16" height="16">
+            <title>(opens in a new tab)</title>
+            <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="info-box__link" href="https://pawelgrzybek.com/the-difference-between-css-focus-and-focus-visible-pseudo-class/" target="_blank" rel="noopener noreferrer">
+          The difference between :focus and :focus-visible (Paweł Grzybek)
+          <svg class="info-box__external-icon" role="img" aria-label="(opens in a new tab)" focusable="false" viewBox="0 0 24 24" width="16" height="16">
+            <title>(opens in a new tab)</title>
+            <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="info-box__link" href="https://medienbaecker.com/articles/focus-outlines" target="_blank" rel="noopener noreferrer">
+          Beautiful focus outlines (Medienbäcker)
+          <svg class="info-box__external-icon" role="img" aria-label="(opens in a new tab)" focusable="false" viewBox="0 0 24 24" width="16" height="16">
+            <title>(opens in a new tab)</title>
+            <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="info-box__link" href="https://www.smashingmagazine.com/2022/11/guide-keyboard-accessibility-html-css-part1/#the-optimal-outline-size" target="_blank" rel="noopener noreferrer">
+          The optimal outline size (Smashing Magazine)
+          <svg class="info-box__external-icon" role="img" aria-label="(opens in a new tab)" focusable="false" viewBox="0 0 24 24" width="16" height="16">
+            <title>(opens in a new tab)</title>
+            <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="info-box__link" href="https://www.sarasoueidan.com/blog/focus-indicators/" target="_blank" rel="noopener noreferrer">
+          A guide to designing accessible, WCAG-compliant focus indicators (Sara Soueidan)
+          <svg class="info-box__external-icon" role="img" aria-label="(opens in a new tab)" focusable="false" viewBox="0 0 24 24" width="16" height="16">
+            <title>(opens in a new tab)</title>
+            <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="info-box__link" href="https://piccalil.li/blog/taking-a-shot-at-the-double-focus-ring-problem-using-modern-css/" target="_blank" rel="noopener noreferrer">
+          Taking a shot at the double focus ring problem (Piccalilli)
+          <svg class="info-box__external-icon" role="img" aria-label="(opens in a new tab)" focusable="false" viewBox="0 0 24 24" width="16" height="16">
+            <title>(opens in a new tab)</title>
+            <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="info-box__link" href="https://stackoverflow.com/questions/1599660/which-html-elements-can-receive-focus" target="_blank" rel="noopener noreferrer">
+          Which HTML elements can receive focus? (Stack Overflow)
+          <svg class="info-box__external-icon" role="img" aria-label="(opens in a new tab)" focusable="false" viewBox="0 0 24 24" width="16" height="16">
+            <title>(opens in a new tab)</title>
+            <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/>
+          </svg>
+        </a>
+      </li>
+  </ul>
+</aside>
+
+</main>
+<footer>
+  <div class="footer__imprint">
+    <div class="footer__links">
+      <a href="https://browserperson.medium.com/" target="_blank" rel="noopener noreferrer">
+        <svg aria-hidden="true" focusable="false" class="footer__icon" viewBox="0 0 512 512" width="32" height="32" xmlns="http://www.w3.org/2000/svg"><path d="M511.2,256C511.2,115.155 396.851,0.806 256.006,0.806L255.994,0.806C115.149,0.806 0.8,115.155 0.8,256C0.8,396.845 115.149,511.194 255.994,511.194L256.006,511.194C396.851,511.194 511.2,396.845 511.2,256ZM281.624,256.002C281.624,318.733 231.116,369.586 168.814,369.586C106.512,369.586 56,318.721 56,256.002C56,193.282 106.508,142.414 168.814,142.414C231.12,142.414 281.624,193.271 281.624,256.002ZM405.381,256.002C405.381,315.05 380.126,362.936 348.974,362.936C317.821,362.936 292.567,315.05 292.567,256.002C292.567,196.954 317.817,149.067 348.97,149.067C380.123,149.067 405.377,196.939 405.377,256.002L405.381,256.002ZM456,256.002C456,308.894 447.119,351.798 436.162,351.798C425.204,351.798 416.327,308.906 416.327,256.002C416.327,203.098 425.207,160.206 436.162,160.206C447.116,160.206 456,203.094 456,256.002Z"/></svg>
+        <span class="visually-hidden">Medium (opens in a new tab)</span>
+      </a>
+      <a href="https://www.linkedin.com/in/maria-korneeva/" target="_blank" rel="noopener noreferrer">
+        <svg aria-hidden="true" focusable="false" class="footer__icon" viewBox="0 0 512 512" width="32" height="32" xmlns="http://www.w3.org/2000/svg"><path d="M256,0c141.29,0 256,114.71 256,256c0,141.29 -114.71,256 -256,256c-141.29,0 -256,-114.71 -256,-256c0,-141.29 114.71,-256 256,-256Zm-80.037,399.871l0,-199.921l-66.464,0l0,199.921l66.464,0Zm239.62,0l0,-114.646c0,-61.409 -32.787,-89.976 -76.509,-89.976c-35.255,0 -51.047,19.389 -59.889,33.007l0,-28.306l-66.447,0c0.881,18.757 0,199.921 0,199.921l66.446,0l0,-111.65c0,-5.976 0.43,-11.95 2.191,-16.221c4.795,-11.935 15.737,-24.299 34.095,-24.299c24.034,0 33.663,18.34 33.663,45.204l0,106.966l66.45,0Zm-272.403,-296.321c-22.74,0 -37.597,14.95 -37.597,34.545c0,19.182 14.405,34.544 36.717,34.544l0.429,0c23.175,0 37.6,-15.362 37.6,-34.544c-0.43,-19.595 -14.424,-34.545 -37.149,-34.545Z"/></svg>
+        <span class="visually-hidden">LinkedIn (opens in a new tab)</span>
+      </a>
+      <a href="https://twitter.com/BrowserPerson" target="_blank" rel="noopener noreferrer">
+        <svg aria-hidden="true" focusable="false" class="footer__icon" viewBox="0 0 512 512" width="32" height="32" xmlns="http://www.w3.org/2000/svg"><path d="M256,0c141.29,0 256,114.71 256,256c0,141.29 -114.71,256 -256,256c-141.29,0 -256,-114.71 -256,-256c0,-141.29 114.71,-256 256,-256Zm-45.091,392.158c113.283,0 175.224,-93.87 175.224,-175.223c0,-2.682 0,-5.364 -0.128,-7.919c12.005,-8.684 22.478,-19.54 30.779,-31.928c-10.983,4.853 -22.861,8.174 -35.377,9.706c12.772,-7.663 22.478,-19.668 27.076,-34.099c-11.878,7.024 -25.032,12.132 -39.081,14.942c-11.239,-12.005 -27.203,-19.412 -44.955,-19.412c-33.972,0 -61.558,27.586 -61.558,61.558c0,4.853 0.511,9.578 1.66,14.048c-51.213,-2.554 -96.552,-27.075 -126.947,-64.368c-5.237,9.068 -8.302,19.668 -8.302,30.907c0,21.328 10.856,40.23 27.459,51.213c-10.09,-0.255 -19.541,-3.065 -27.842,-7.662l0,0.766c0,29.885 21.2,54.661 49.425,60.409c-5.108,1.404 -10.6,2.171 -16.219,2.171c-3.96,0 -7.791,-0.383 -11.622,-1.15c7.79,24.521 30.523,42.274 57.471,42.784c-21.073,16.476 -47.637,26.31 -76.501,26.31c-4.981,0 -9.834,-0.256 -14.687,-0.894c26.948,17.624 59.387,27.841 94.125,27.841Z"/></svg>
+        <span class="visually-hidden">Twitter (opens in a new tab)</span>
+      </a>
+    </div>
+    <p class="footer__right">
+      Created by
+      <a href="https://twitter.com/BrowserPerson" target="_blank" rel="noopener noreferrer">@BrowserPerson<span class="visually-hidden"> (opens in a new tab)</span></a>
+      <br />Licensed under MIT
+    </p>
+  </div>
+</footer>
+  <script type="module" src="../js/nav.js"></script>
+  <script type="module" src="../js/keyboard-navigation.js"></script>
+</body>
+</html>

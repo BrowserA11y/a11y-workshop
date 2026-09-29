@@ -1,0 +1,27 @@
+
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 2px solid var(--color-secondary);
+  background: var(--color-primary-invert);
+  color: var(--color-primary);
+  cursor: pointer;
+}
+.icon-button__img {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+.demo-display-none { display: none; }
+.demo__hint { margin: 0.35rem 0 0; color: var(--color-text-muted); font-size: 0.95rem; }
+.demo-contacts { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
+.demo-contacts__item { display: flex; gap: 0.75rem; align-items: flex-start; }
+.demo-contacts__avatar { fill: var(--color-secondary); flex-shrink: 0; }
+.demo-contacts__body p { margin: 0 0 0.25rem; }
+.demo-img { border: 1px dashed var(--color-border); background: #f5f5f5; }
+.demo-link { display: inline-flex; align-items: center; gap: 0.35rem; }
+.demo-field { margin: 0; }

@@ -1,0 +1,54 @@
+
+.new-book-form {
+  max-width: 25rem;
+  margin: 0 auto;
+  display: grid;
+  gap: var(--spacing-xxs);
+}
+.form-field {
+  display: block;
+}
+.form-field > span,
+.form-field-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+.form-field input {
+  width: 100%;
+  padding: 12px 20px 12px 6px;
+  border: 1px solid var(--color-border);
+  font: inherit;
+}
+.form-field input.is-invalid {
+  border: 2px solid var(--color-error);
+}
+.form-field__hint {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--color-text-muted);
+}
+.form-field__error {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--color-error);
+}
+.form__actions {
+  margin-top: var(--spacing-xxs);
+}
+.form__actions button {
+  font: inherit;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-primary-invert);
+  color: var(--color-primary);
+  border: 3px solid var(--color-primary);
+  cursor: pointer;
+}
+.form__actions button:disabled {
+  border-color: #ccc;
+  color: #888;
+  cursor: not-allowed;
+}
+.form__actions button:not(:disabled):hover {
+  background: var(--color-background-light);
+}

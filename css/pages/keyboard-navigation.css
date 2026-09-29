@@ -1,0 +1,144 @@
+.focus-sample {
+  margin: 0 0 var(--spacing-xxs);
+  padding: 0.5rem 0.65rem;
+  background: var(--color-background-muted);
+  border: 1px dashed var(--color-border);
+}
+
+.focus-sample--focusable:focus {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+.tabindex-list {
+  margin: var(--spacing-xs) 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--spacing-xxs);
+}
+
+.tabindex-list li {
+  padding: var(--spacing-xxs);
+  border: 1px solid var(--color-border);
+}
+
+.fake-control {
+  display: inline-block;
+  font: inherit;
+  padding: 0.4rem 0.8rem;
+  color: var(--color-primary-invert);
+  background: var(--color-secondary);
+  border: 2px solid var(--color-secondary);
+  cursor: pointer;
+}
+
+.fake-control:focus-visible {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+.fake-control--broken {
+  color: var(--color-primary);
+  background: var(--color-background-muted);
+  border-style: dashed;
+  border-color: var(--color-border);
+}
+
+.outline-grid {
+  display: grid;
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-xs);
+}
+
+@media (min-width: 768px) {
+  .outline-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.outline-bg-pair {
+  display: grid;
+  gap: var(--spacing-xxs);
+}
+
+.outline-bg {
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-xxs);
+}
+
+.outline-bg--dark {
+  background: var(--color-secondary);
+}
+
+.demo__example button.outline-demo--zero:focus-visible,
+.demo__example button.outline-demo--none:focus-visible {
+  outline: none;
+}
+
+.demo__example button.outline-demo--transparent:focus-visible {
+  outline: 3px solid transparent;
+}
+
+.demo__example button.outline-demo--defined:focus-visible {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+.demo__example button.outline-demo--double:focus-visible {
+  outline: 2px solid var(--color-primary-invert);
+  outline-offset: 0;
+  box-shadow: 0 0 0 4px var(--color-primary);
+}
+
+.demo__example button.outline-demo--shadow:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--color-focus-ring);
+}
+
+.demo__example button.outline-demo--offset:focus-visible {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 6px;
+}
+
+.demo__example button.outline-demo--current {
+  color: var(--color-secondary);
+  background: var(--color-background-light);
+  border-color: var(--color-background-light);
+}
+
+.demo__example button.outline-demo--current:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+}
+
+.demo__example button.outline-demo--current-inset {
+  color: var(--color-background-light);
+}
+
+.demo__example button.outline-demo--current-inset:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: -5px;
+}
+
+.demo__example button.pseudo-demo--focus:focus {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+.demo__example button.pseudo-demo--focus-visible:focus-visible {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+.focus-within-card {
+  padding: var(--spacing-xxs);
+  border: 2px solid var(--color-border);
+  background: var(--color-background-muted);
+}
+
+.focus-within-card:focus-within {
+  border-color: var(--color-focus-ring);
+  box-shadow: 0 0 0 3px rgb(170 0 255 / 35%);
+}

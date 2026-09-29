@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Showcases</title>
+  <link rel="icon" href="../assets/favicon/favicon.ico" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/utilities.css" />
+  <link rel="stylesheet" href="../css/layout.css" />
+  <link rel="stylesheet" href="../css/pages/showcase-page.css" />
+</head>
+<body>
+<header>
+  <a class="skip-link" href="#content">Skip to main content</a>
+  <div class="header__content">
+    <nav aria-label="Accessible Reads" class="nav">
+      <button type="button" id="menubutton" class="nav__toggle"
+        aria-label="Accessible Reads Quick Links"
+        aria-controls="menuContent"
+        aria-expanded="false">☰</button>
+      <ul id="menuContent" class="nav__list">
+        <li class="nav__item"><a class="nav__link" href="../pages/new-book.html">New book</a></li>
+        <li class="nav__item"><a class="nav__link" href="../pages/books.html">Books</a></li>
+        <li class="nav__item"><a class="nav__link" href="../pages/about.html">About Accessible Reads</a></li>
+        <li class="nav__item"><a class="nav__link" href="../showcases/index.html">Showcases</a></li>
+      </ul>
+    </nav>
+    <div class="logo">
+      <img class="logo__image" alt="" src="../assets/a11y.png" width="80" height="80" />
+      <span class="logo__text"><span class="text-secondary">Accessible</span> Reads</span>
+    </div>
+  </div>
+</header>
+<main id="content" tabindex="-1">
+
+  <h1 tabindex="-1">Showcases</h1>
+  <p class="showcases__intro">
+    Interactive examples of accessible UI patterns. Each tile links to a focused
+    demo — the title is the only link; a stretched hit area makes the whole tile
+    activatable without nesting the description inside the anchor.
+  </p>
+  <ul class="showcases__grid">
+    <li class="showcases__item">
+      <article class="showcase">
+        <div class="showcase__icon" aria-hidden="true">
+          <svg class="showcases__tile-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" focusable="false">
+            <path d="M4 4h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm1 2v12h14V6H5zm2 2h10v2H7V8zm0 4h7v2H7v-2z" />
+          </svg>
+        </div>
+        <h2 class="showcase__title">
+          <a class="showcase__link" href="accessible-name-and-description.html">Accessible name and description</a>
+        </h2>
+        <p class="showcase__description">Explore how browsers compute accessible names and descriptions for UI controls.</p>
+      </article>
+    </li>
+    <li class="showcases__item">
+      <article class="showcase">
+        <div class="showcase__icon" aria-hidden="true">
+          <svg class="showcases__tile-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" focusable="false">
+            <path d="M4 6l4 6-4 6h2.5L10.5 12 6.5 6H4zm16 0h-2.5L13.5 12l4 6H20l-4-6 4-6zM11 17h2l1-10h-2l-1 10z" />
+          </svg>
+        </div>
+        <h2 class="showcase__title">
+          <a class="showcase__link" href="semantic-html.html">Semantic HTML</a>
+        </h2>
+        <p class="showcase__description">Use the right elements and required child order so assistive tech gets real meaning.</p>
+      </article>
+    </li>
+    <li class="showcases__item">
+      <article class="showcase">
+        <div class="showcase__icon" aria-hidden="true">
+          <svg class="showcases__tile-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" focusable="false">
+            <path d="M3 5h18v2H3V5zm2 4h14v2H5V9zm2 4h10v2H7v-2zm2 4h6v2H9v-2z" />
+          </svg>
+        </div>
+        <h2 class="showcase__title">
+          <a class="showcase__link" href="aria.html">ARIA</a>
+        </h2>
+        <p class="showcase__description">Roles, overrides, nesting, aria-hidden, and live regions — and when they help or hurt.</p>
+      </article>
+    </li>
+    <li class="showcases__item">
+      <article class="showcase">
+        <div class="showcase__icon" aria-hidden="true">
+          <svg class="showcases__tile-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" focusable="false">
+            <path d="M12 5c-5 0-9.3 3.1-11 7 1.7 3.9 6 7 11 7s9.3-3.1 11-7c-1.7-3.9-6-7-11-7zm0 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM2.1 3.5l18.4 18.4 1.4-1.4L3.5 2.1 2.1 3.5z" />
+          </svg>
+        </div>
+        <h2 class="showcase__title">
+          <a class="showcase__link" href="hiding-elements.html">Hiding elements</a>
+        </h2>
+        <p class="showcase__description">Visible vs invisible, and whether assistive technologies still get the content.</p>
+      </article>
+    </li>
+    <li class="showcases__item">
+      <article class="showcase">
+        <div class="showcase__icon" aria-hidden="true">
+          <svg class="showcases__tile-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" focusable="false">
+            <path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm-4.9-2a4.9 4.9 0 0 1 9.8 0h2a6.9 6.9 0 0 0-13.8 0h2zm-3.5 0a8.4 8.4 0 0 1 16.8 0h2a10.4 10.4 0 0 0-20.8 0h2z" />
+          </svg>
+        </div>
+        <h2 class="showcase__title">
+          <a class="showcase__link" href="live-regions.html">Live regions</a>
+        </h2>
+        <p class="showcase__description">Announce dynamic updates to assistive technologies without moving focus.</p>
+      </article>
+    </li>
+    <li class="showcases__item">
+      <article class="showcase">
+        <div class="showcase__icon" aria-hidden="true">
+          <svg class="showcases__tile-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" focusable="false">
+            <path d="M3 5h8v4H3V5zm10 0h8v4h-8V5zM3 11h18v2H3v-2zm0 4h12v4H3v-4zm14 0h4v4h-4v-4z" />
+          </svg>
+        </div>
+        <h2 class="showcase__title">
+          <a class="showcase__link" href="reflow-resize-and-spacing.html">Reflow, Resize and Spacing</a>
+        </h2>
+        <p class="showcase__description">Watch fixed boxes, clipping, and stacked UI break when text grows or spacing changes.</p>
+      </article>
+    </li>
+    <li class="showcases__item">
+      <article class="showcase">
+        <div class="showcase__icon" aria-hidden="true">
+          <svg class="showcases__tile-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" focusable="false">
+            <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 2v16a8 8 0 0 0 0-16z" />
+          </svg>
+        </div>
+        <h2 class="showcase__title">
+          <a class="showcase__link" href="color-contrast-and-use-of-color.html">Color contrast and use of color</a>
+        </h2>
+        <p class="showcase__description">Compare text and non-text contrast thresholds, and patterns that rely on color alone.</p>
+      </article>
+    </li>
+    <li class="showcases__item">
+      <article class="showcase">
+        <div class="showcase__icon" aria-hidden="true">
+          <svg class="showcases__tile-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" focusable="false">
+            <path d="M11 1h2v3h-2V1zm0 19h2v3h-2v-3zM1 11h3v2H1v-2zm19 0h3v2h-3v-2zM3.5 4.9l2.1-2.1 2.1 2.1-2.1 2.1-2.1-2.1zm12.8 12.8l2.1-2.1 2.1 2.1-2.1 2.1-2.1-2.1zM3.5 19.1l2.1-2.1 2.1 2.1-2.1 2.1-2.1-2.1zm12.8-12.8l2.1-2.1 2.1 2.1-2.1 2.1-2.1-2.1zM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10z" />
+          </svg>
+        </div>
+        <h2 class="showcase__title">
+          <a class="showcase__link" href="high-contrast-mode.html">High contrast mode</a>
+        </h2>
+        <p class="showcase__description">See how forced colors remaps UI, and which SVG fill values survive Windows High Contrast.</p>
+      </article>
+    </li>
+    <li class="showcases__item">
+      <article class="showcase">
+        <div class="showcase__icon" aria-hidden="true">
+          <svg class="showcases__tile-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" focusable="false">
+            <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2zm1 3v2h2V9H5zm4 0v2h2V9H9zm4 0v2h2V9h-2zm4 0v2h2V9h-2zM5 13v2h6v-2H5zm8 0v2h6v-2h-6z" />
+          </svg>
+        </div>
+        <h2 class="showcase__title">
+          <a class="showcase__link" href="keyboard-navigation.html">Keyboard navigation</a>
+        </h2>
+        <p class="showcase__description">Compare tabbable vs focusable elements, tabindex pitfalls, and clickable divs.</p>
+      </article>
+    </li>
+  </ul>
+
+</main>
+<footer>
+  <div class="footer__imprint">
+    <div class="footer__links">
+      <a href="https://browserperson.medium.com/" target="_blank" rel="noopener noreferrer">
+        <svg aria-hidden="true" focusable="false" class="footer__icon" viewBox="0 0 512 512" width="32" height="32" xmlns="http://www.w3.org/2000/svg"><path d="M511.2,256C511.2,115.155 396.851,0.806 256.006,0.806L255.994,0.806C115.149,0.806 0.8,115.155 0.8,256C0.8,396.845 115.149,511.194 255.994,511.194L256.006,511.194C396.851,511.194 511.2,396.845 511.2,256ZM281.624,256.002C281.624,318.733 231.116,369.586 168.814,369.586C106.512,369.586 56,318.721 56,256.002C56,193.282 106.508,142.414 168.814,142.414C231.12,142.414 281.624,193.271 281.624,256.002ZM405.381,256.002C405.381,315.05 380.126,362.936 348.974,362.936C317.821,362.936 292.567,315.05 292.567,256.002C292.567,196.954 317.817,149.067 348.97,149.067C380.123,149.067 405.377,196.939 405.377,256.002L405.381,256.002ZM456,256.002C456,308.894 447.119,351.798 436.162,351.798C425.204,351.798 416.327,308.906 416.327,256.002C416.327,203.098 425.207,160.206 436.162,160.206C447.116,160.206 456,203.094 456,256.002Z"/></svg>
+        <span class="visually-hidden">Medium (opens in a new tab)</span>
+      </a>
+      <a href="https://www.linkedin.com/in/maria-korneeva/" target="_blank" rel="noopener noreferrer">
+        <svg aria-hidden="true" focusable="false" class="footer__icon" viewBox="0 0 512 512" width="32" height="32" xmlns="http://www.w3.org/2000/svg"><path d="M256,0c141.29,0 256,114.71 256,256c0,141.29 -114.71,256 -256,256c-141.29,0 -256,-114.71 -256,-256c0,-141.29 114.71,-256 256,-256Zm-80.037,399.871l0,-199.921l-66.464,0l0,199.921l66.464,0Zm239.62,0l0,-114.646c0,-61.409 -32.787,-89.976 -76.509,-89.976c-35.255,0 -51.047,19.389 -59.889,33.007l0,-28.306l-66.447,0c0.881,18.757 0,199.921 0,199.921l66.446,0l0,-111.65c0,-5.976 0.43,-11.95 2.191,-16.221c4.795,-11.935 15.737,-24.299 34.095,-24.299c24.034,0 33.663,18.34 33.663,45.204l0,106.966l66.45,0Zm-272.403,-296.321c-22.74,0 -37.597,14.95 -37.597,34.545c0,19.182 14.405,34.544 36.717,34.544l0.429,0c23.175,0 37.6,-15.362 37.6,-34.544c-0.43,-19.595 -14.424,-34.545 -37.149,-34.545Z"/></svg>
+        <span class="visually-hidden">LinkedIn (opens in a new tab)</span>
+      </a>
+      <a href="https://twitter.com/BrowserPerson" target="_blank" rel="noopener noreferrer">
+        <svg aria-hidden="true" focusable="false" class="footer__icon" viewBox="0 0 512 512" width="32" height="32" xmlns="http://www.w3.org/2000/svg"><path d="M256,0c141.29,0 256,114.71 256,256c0,141.29 -114.71,256 -256,256c-141.29,0 -256,-114.71 -256,-256c0,-141.29 114.71,-256 256,-256Zm-45.091,392.158c113.283,0 175.224,-93.87 175.224,-175.223c0,-2.682 0,-5.364 -0.128,-7.919c12.005,-8.684 22.478,-19.54 30.779,-31.928c-10.983,4.853 -22.861,8.174 -35.377,9.706c12.772,-7.663 22.478,-19.668 27.076,-34.099c-11.878,7.024 -25.032,12.132 -39.081,14.942c-11.239,-12.005 -27.203,-19.412 -44.955,-19.412c-33.972,0 -61.558,27.586 -61.558,61.558c0,4.853 0.511,9.578 1.66,14.048c-51.213,-2.554 -96.552,-27.075 -126.947,-64.368c-5.237,9.068 -8.302,19.668 -8.302,30.907c0,21.328 10.856,40.23 27.459,51.213c-10.09,-0.255 -19.541,-3.065 -27.842,-7.662l0,0.766c0,29.885 21.2,54.661 49.425,60.409c-5.108,1.404 -10.6,2.171 -16.219,2.171c-3.96,0 -7.791,-0.383 -11.622,-1.15c7.79,24.521 30.523,42.274 57.471,42.784c-21.073,16.476 -47.637,26.31 -76.501,26.31c-4.981,0 -9.834,-0.256 -14.687,-0.894c26.948,17.624 59.387,27.841 94.125,27.841Z"/></svg>
+        <span class="visually-hidden">Twitter (opens in a new tab)</span>
+      </a>
+    </div>
+    <p class="footer__right">
+      Created by
+      <a href="https://twitter.com/BrowserPerson" target="_blank" rel="noopener noreferrer">@BrowserPerson<span class="visually-hidden"> (opens in a new tab)</span></a>
+      <br />Licensed under MIT
+    </p>
+  </div>
+</footer>
+  <script type="module" src="../js/nav.js"></script>
+</body>
+</html>

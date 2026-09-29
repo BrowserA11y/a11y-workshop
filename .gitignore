@@ -1,0 +1,6 @@
+.DS_Store
+.idea/
+*.log
+__pycache__/
+node_modules/
+package-lock.json

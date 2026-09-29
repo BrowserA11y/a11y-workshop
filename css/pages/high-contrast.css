@@ -1,0 +1,42 @@
+
+.hcm-swatch { padding: 0.5rem; margin: 0.25rem 0; }
+.hcm-text { color: #0d7377; }
+.hcm-link { color: #1a5f8a; }
+.hcm-link--alt { color: #8a4b08; }
+.hcm-link--third { color: #6b2d5c; }
+.hcm-button {
+  font: inherit;
+  padding: 0.4rem 0.8rem;
+  color: #fff;
+  background: #c45c26;
+  border: 2px solid #c45c26;
+  cursor: pointer;
+}
+.icon-row { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
+.icon-fill--brand { fill: #c45c26; }
+.icon-fill--current { fill: currentColor; }
+.icon-fill--canvas-text { fill: CanvasText; }
+.icon-fill--link-text { fill: LinkText; }
+.icon-fill--button-text { fill: ButtonText; }
+.icon-override--ok { fill: #c45c26; }
+.hcm-adjust-none-button {
+  font: inherit;
+  padding: 0.4rem 0.8rem;
+  color: #003566;
+  background: #ffb703;
+  border: 2px solid #fb8500;
+  cursor: pointer;
+  forced-color-adjust: none;
+}
+.hcm-outline-button {
+  font: inherit;
+  padding: 0.4rem 0.8rem;
+  background: var(--color-primary-invert);
+  border: 2px solid var(--color-secondary);
+  box-shadow: 0 2px 6px rgb(0 0 0 / 35%);
+  cursor: pointer;
+}
+@media (forced-colors: active) {
+  .icon-override--ok { fill: currentColor; }
+  .hcm-outline-button { outline: solid 1px; box-shadow: none; }
+}

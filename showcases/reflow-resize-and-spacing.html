@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reflow, Resize and Spacing</title>
+  <link rel="icon" href="../assets/favicon/favicon.ico" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/utilities.css" />
+  <link rel="stylesheet" href="../css/layout.css" />
+  <link rel="stylesheet" href="../css/pages/showcase-page.css" />
+  <link rel="stylesheet" href="../css/pages/reflow-resize-and-spacing.css" />
+</head>
+<body>
+<header>
+  <a class="skip-link" href="#content">Skip to main content</a>
+  <div class="header__content">
+    <nav aria-label="Accessible Reads" class="nav">
+      <button type="button" id="menubutton" class="nav__toggle"
+        aria-label="Accessible Reads Quick Links"
+        aria-controls="menuContent"
+        aria-expanded="false">☰</button>
+      <ul id="menuContent" class="nav__list">
+        <li class="nav__item"><a class="nav__link" href="../pages/new-book.html">New book</a></li>
+        <li class="nav__item"><a class="nav__link" href="../pages/books.html">Books</a></li>
+        <li class="nav__item"><a class="nav__link" href="../pages/about.html">About Accessible Reads</a></li>
+        <li class="nav__item"><a class="nav__link" href="../showcases/index.html">Showcases</a></li>
+      </ul>
+    </nav>
+    <div class="logo">
+      <img class="logo__image" alt="" src="../assets/a11y.png" width="80" height="80" />
+      <span class="logo__text"><span class="text-secondary">Accessible</span> Reads</span>
+    </div>
+  </div>
+</header>
+<main id="content" tabindex="-1">
+
+<section class="intro">
+  <p>
+    <a class="back-link" href="index.html">
+      <span class="back-link__arrow" aria-hidden="true">←</span>
+      Back to Showcases
+    </a>
+  </p>
+
+  <h1 tabindex="-1">Reflow, Resize and Spacing</h1>
+
+  <p>
+    People enlarge text, zoom the page, narrow the viewport, or inject extra
+    letter and line spacing. Layouts that rely on fixed boxes, clipping, or
+    stacked UI often lose content or controls. Use the playground controls,
+    then try browser zoom and a narrow window too.
+  </p>
+</section>
+
+<section class="demo" aria-labelledby="demo-playground">
+  <h2 id="demo-playground">Playground: font size and text spacing</h2>
+  <p>
+    Raise the font scale toward 200% and turn on WCAG-style text spacing. The
+    demos below live inside this playground so failures show up without changing
+    browser settings.
+  </p>
+
+  <div class="demo__actions" role="group" aria-label="Playground adjustments">
+    <button type="button" id="decrease-font" disabled>Decrease font</button>
+    <button type="button" id="increase-font">Increase font</button>
+    <button type="button" id="reset-font">Reset font</button>
+    <button type="button" id="toggle-spacing" aria-pressed="false">
+      Apply text spacing
+    </button>
+  </div>
+  <p class="demo-status" aria-live="polite" id="playground-status">
+    Font scale: 100%
+  </p>
+
+  <div class="demo-playground" id="playground" style="--demo-font-scale: 1">
+    <section class="demo-playground__block" aria-labelledby="demo-clipping">
+      <h2 id="demo-clipping">Clipping and ellipsis</h2>
+      <p>
+        These wrappers always use a fixed size with
+        <code>overflow: hidden</code> or ellipsis. Increase the font scale —
+        the text grows, the box does not, and content disappears.
+      </p>
+
+      <div class="demo__example demo__example--solo">
+        <h3>Fixed height + <code>overflow: hidden</code></h3>
+        <p class="demo-clip-box">
+          Shelf note: Renewals close at dusk. Bring your library card and any
+          overdue titles before the weekend rush.
+        </p>
+      </div>
+
+      <div class="demo__example demo__example--solo">
+        <h3>Ellipsis truncation</h3>
+        <p class="demo-ellipsis">
+          The complete annotated catalog of rare first editions from the
+          coastal branch special collections.
+        </p>
+      </div>
+    </section>
+
+    <section class="demo-playground__block" aria-labelledby="demo-fixed">
+      <h2 id="demo-fixed">Fixed length and width</h2>
+      <p>
+        Pixel widths, non-wrapping toolbars, and rigid columns fight reflow
+        (about 320 CSS px) and text resize. At the default size these may look
+        fine — enlarge the font or narrow the window to see them break.
+      </p>
+
+      <div class="demo__pair">
+        <div class="demo__example demo__example--overflow">
+          <h3>Fixed 220px card</h3>
+          <div class="demo-fixed-card">
+            <p>
+              Membership benefits include extended loans, holds across branches,
+              and early access to author talks.
+            </p>
+            <button type="button">Join waitlist</button>
+          </div>
+        </div>
+
+        <div class="demo__example demo__example--overflow">
+          <h3>No-wrap toolbar</h3>
+          <div class="demo-nowrap-bar" role="toolbar" aria-label="Broken actions">
+            <button type="button">Reserve</button>
+            <button type="button">Renew all</button>
+            <button type="button">Download receipt</button>
+            <button type="button">Share catalog link</button>
+          </div>
+          <p class="demo-hint">
+            Wide enough at the default size. Raise the font or narrow the
+            viewport — the row can no longer fit and scrolls or spills.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="demo-playground__block" aria-labelledby="demo-overlay">
+      <h2 id="demo-overlay">Overlapping banners and z-index</h2>
+      <p>
+        Sticky or absolutely positioned chrome with a high
+        <code>z-index</code> can cover interactive controls when the layout
+        reflows on a small screen or larger text.
+      </p>
+
+      <div class="demo__actions" id="banner-show-actions" hidden>
+        <button type="button" id="show-banner">Show promo banner</button>
+      </div>
+
+      <div class="demo-overlay-stage">
+        <div class="demo-promo-banner" id="promo-banner" role="region" aria-label="Promo">
+          <div class="demo-promo-banner__body">
+            <p>
+              Summer reading challenge — enroll before Friday for double
+              points on every finished title.
+            </p>
+            <p>
+              Log each book you finish, invite a reading buddy, and unlock
+              branch badges as you go. Prizes include tote bags, early holds,
+              and a seat at the autumn author meetup.
+            </p>
+          </div>
+          <button type="button" class="demo-promo-banner__dismiss" id="dismiss-banner">
+            Dismiss
+          </button>
+        </div>
+
+        <div class="demo-overlay-stage__content">
+          <p>
+            On a wide layout the banner stays in flow above these actions. Narrow
+            the viewport so the same absolutely positioned banner covers the
+            buttons underneath.
+          </p>
+          <div class="demo__actions">
+            <button type="button">Start challenge</button>
+            <button type="button">View leaderboard</button>
+            <button type="button">Invite a friend</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+
+<aside class="info-box" aria-label="Related resources">
+  <ul class="info-box__list">
+      <li>
+        <a class="info-box__link" href="https://www.oddbird.net/2025/07/22/size-preferences/" target="_blank" rel="noopener noreferrer">
+          Designing for User Font-size and Zoom (OddBird)
+          <svg class="info-box__external-icon" role="img" aria-label="(opens in a new tab)" focusable="false" viewBox="0 0 24 24" width="16" height="16">
+            <title>(opens in a new tab)</title>
+            <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="info-box__link" href="https://github.com/openstyles/stylus/blob/master/README.md" target="_blank" rel="noopener noreferrer">
+          Stylus user styles (GitHub README)
+          <svg class="info-box__external-icon" role="img" aria-label="(opens in a new tab)" focusable="false" viewBox="0 0 24 24" width="16" height="16">
+            <title>(opens in a new tab)</title>
+            <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="info-box__link" href="https://www.matuzo.at/blog/2023/how-browsers-zoom-text" target="_blank" rel="noopener noreferrer">
+          How browsers zoom text (matuzo.at)
+          <svg class="info-box__external-icon" role="img" aria-label="(opens in a new tab)" focusable="false" viewBox="0 0 24 24" width="16" height="16">
+            <title>(opens in a new tab)</title>
+            <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="info-box__link" href="https://webaim.org/discussion/mail_thread?thread=11234" target="_blank" rel="noopener noreferrer">
+          Zooming & Scaling Disabled or Not? (WebAIM list)
+          <svg class="info-box__external-icon" role="img" aria-label="(opens in a new tab)" focusable="false" viewBox="0 0 24 24" width="16" height="16">
+            <title>(opens in a new tab)</title>
+            <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="info-box__link" href="https://www.joshwcomeau.com/css/surprising-truth-about-pixels-and-accessibility/" target="_blank" rel="noopener noreferrer">
+          The Surprising Truth About Pixels and Accessibility
+          <svg class="info-box__external-icon" role="img" aria-label="(opens in a new tab)" focusable="false" viewBox="0 0 24 24" width="16" height="16">
+            <title>(opens in a new tab)</title>
+            <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="info-box__link" href="https://blog.damato.design/posts/font-size-dimensions/" target="_blank" rel="noopener noreferrer">
+          Font size dimensions (Donnie D’Amato)
+          <svg class="info-box__external-icon" role="img" aria-label="(opens in a new tab)" focusable="false" viewBox="0 0 24 24" width="16" height="16">
+            <title>(opens in a new tab)</title>
+            <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="info-box__link" href="https://stevenmouret.github.io/web-accessibility-guidelines/accessibility/presentation-of-information/customizing-the-display.html" target="_blank" rel="noopener noreferrer">
+          Customizing the display (Web Accessibility Guidelines)
+          <svg class="info-box__external-icon" role="img" aria-label="(opens in a new tab)" focusable="false" viewBox="0 0 24 24" width="16" height="16">
+            <title>(opens in a new tab)</title>
+            <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/>
+          </svg>
+        </a>
+      </li>
+  </ul>
+</aside>
+
+</main>
+<footer>
+  <div class="footer__imprint">
+    <div class="footer__links">
+      <a href="https://browserperson.medium.com/" target="_blank" rel="noopener noreferrer">
+        <svg aria-hidden="true" focusable="false" class="footer__icon" viewBox="0 0 512 512" width="32" height="32" xmlns="http://www.w3.org/2000/svg"><path d="M511.2,256C511.2,115.155 396.851,0.806 256.006,0.806L255.994,0.806C115.149,0.806 0.8,115.155 0.8,256C0.8,396.845 115.149,511.194 255.994,511.194L256.006,511.194C396.851,511.194 511.2,396.845 511.2,256ZM281.624,256.002C281.624,318.733 231.116,369.586 168.814,369.586C106.512,369.586 56,318.721 56,256.002C56,193.282 106.508,142.414 168.814,142.414C231.12,142.414 281.624,193.271 281.624,256.002ZM405.381,256.002C405.381,315.05 380.126,362.936 348.974,362.936C317.821,362.936 292.567,315.05 292.567,256.002C292.567,196.954 317.817,149.067 348.97,149.067C380.123,149.067 405.377,196.939 405.377,256.002L405.381,256.002ZM456,256.002C456,308.894 447.119,351.798 436.162,351.798C425.204,351.798 416.327,308.906 416.327,256.002C416.327,203.098 425.207,160.206 436.162,160.206C447.116,160.206 456,203.094 456,256.002Z"/></svg>
+        <span class="visually-hidden">Medium (opens in a new tab)</span>
+      </a>
+      <a href="https://www.linkedin.com/in/maria-korneeva/" target="_blank" rel="noopener noreferrer">
+        <svg aria-hidden="true" focusable="false" class="footer__icon" viewBox="0 0 512 512" width="32" height="32" xmlns="http://www.w3.org/2000/svg"><path d="M256,0c141.29,0 256,114.71 256,256c0,141.29 -114.71,256 -256,256c-141.29,0 -256,-114.71 -256,-256c0,-141.29 114.71,-256 256,-256Zm-80.037,399.871l0,-199.921l-66.464,0l0,199.921l66.464,0Zm239.62,0l0,-114.646c0,-61.409 -32.787,-89.976 -76.509,-89.976c-35.255,0 -51.047,19.389 -59.889,33.007l0,-28.306l-66.447,0c0.881,18.757 0,199.921 0,199.921l66.446,0l0,-111.65c0,-5.976 0.43,-11.95 2.191,-16.221c4.795,-11.935 15.737,-24.299 34.095,-24.299c24.034,0 33.663,18.34 33.663,45.204l0,106.966l66.45,0Zm-272.403,-296.321c-22.74,0 -37.597,14.95 -37.597,34.545c0,19.182 14.405,34.544 36.717,34.544l0.429,0c23.175,0 37.6,-15.362 37.6,-34.544c-0.43,-19.595 -14.424,-34.545 -37.149,-34.545Z"/></svg>
+        <span class="visually-hidden">LinkedIn (opens in a new tab)</span>
+      </a>
+      <a href="https://twitter.com/BrowserPerson" target="_blank" rel="noopener noreferrer">
+        <svg aria-hidden="true" focusable="false" class="footer__icon" viewBox="0 0 512 512" width="32" height="32" xmlns="http://www.w3.org/2000/svg"><path d="M256,0c141.29,0 256,114.71 256,256c0,141.29 -114.71,256 -256,256c-141.29,0 -256,-114.71 -256,-256c0,-141.29 114.71,-256 256,-256Zm-45.091,392.158c113.283,0 175.224,-93.87 175.224,-175.223c0,-2.682 0,-5.364 -0.128,-7.919c12.005,-8.684 22.478,-19.54 30.779,-31.928c-10.983,4.853 -22.861,8.174 -35.377,9.706c12.772,-7.663 22.478,-19.668 27.076,-34.099c-11.878,7.024 -25.032,12.132 -39.081,14.942c-11.239,-12.005 -27.203,-19.412 -44.955,-19.412c-33.972,0 -61.558,27.586 -61.558,61.558c0,4.853 0.511,9.578 1.66,14.048c-51.213,-2.554 -96.552,-27.075 -126.947,-64.368c-5.237,9.068 -8.302,19.668 -8.302,30.907c0,21.328 10.856,40.23 27.459,51.213c-10.09,-0.255 -19.541,-3.065 -27.842,-7.662l0,0.766c0,29.885 21.2,54.661 49.425,60.409c-5.108,1.404 -10.6,2.171 -16.219,2.171c-3.96,0 -7.791,-0.383 -11.622,-1.15c7.79,24.521 30.523,42.274 57.471,42.784c-21.073,16.476 -47.637,26.31 -76.501,26.31c-4.981,0 -9.834,-0.256 -14.687,-0.894c26.948,17.624 59.387,27.841 94.125,27.841Z"/></svg>
+        <span class="visually-hidden">Twitter (opens in a new tab)</span>
+      </a>
+    </div>
+    <p class="footer__right">
+      Created by
+      <a href="https://twitter.com/BrowserPerson" target="_blank" rel="noopener noreferrer">@BrowserPerson<span class="visually-hidden"> (opens in a new tab)</span></a>
+      <br />Licensed under MIT
+    </p>
+  </div>
+</footer>
+  <script type="module" src="../js/nav.js"></script>
+  <script type="module" src="../js/reflow-resize-and-spacing.js"></script>
+</body>
+</html>

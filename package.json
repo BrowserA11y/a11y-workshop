@@ -1,0 +1,20 @@
+{
+  "name": "a11y-vanilla-workshop",
+  "private": true,
+  "description": "Accessible Reads workshop — optional Playwright + axe scan fallback",
+  "scripts": {
+    "a11y:scan": "node scripts/a11y-scan.mjs",
+    "lint": "eslint \"**/*.{html,js,mjs}\"",
+    "lint:fix": "eslint \"**/*.{html,js,mjs}\" --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.1",
+    "@html-eslint/eslint-plugin": "^0.20.0",
+    "@html-eslint/parser": "^0.20.0",
+    "eslint": "^8.57.0",
+    "playwright": "^1.49.0",
+    "prettier": "^3.3.3"
+  }
+}
