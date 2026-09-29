@@ -11,8 +11,8 @@ If you prefer Angular (CDK, router, forms, ESLint), see [a11y-angular-workshop](
 - A small book catalog (browse, details, wishlist, add a book) stored in the browser
 - Interactive **showcases** under `showcases/` that demonstrate common a11y patterns and pitfalls
 - Shared layout, design tokens, and navigation
-- **AI + accessibility workshop materials** under [`workshop/`](workshop/) (agenda, prompts, rules, skills, broken lab, automation)
 - ESLint (HTML + JS) and Prettier, with VS Code format-on-save
+- Optional Playwright + axe scan script and sample MCP config
 
 ## Topics covered
 
@@ -61,30 +61,9 @@ npm run format:check  # Prettier check only
 
 Workspace settings in [`.vscode/settings.json`](.vscode/settings.json) turn on **format on save** (Prettier) and ESLint validation for **HTML and JavaScript**. HTML rules come from [`@html-eslint`](https://github.com/yeonjun-in/@html-eslint) (see [`.eslintrc.js`](.eslintrc.js)).
 
-## AI + Accessibility workshop
+## Optional accessibility scan
 
-Full-day, tool-agnostic materials for frontend, developers, and testers:
-
-| Start here | Purpose |
-|------------|---------|
-| [`workshop/agenda.md`](workshop/agenda.md) | Day schedule, outcomes, lab pairing |
-| [`workshop/prompts.md`](workshop/prompts.md) | Diagnose / remediate / review prompts |
-| [`workshop/rules-a11y.md`](workshop/rules-a11y.md) | Always-on AI instructions |
-| [`workshop/skills/`](workshop/skills/) | Audit, remediate, and PR-review playbooks |
-| [`workshop/verification-checklist.md`](workshop/verification-checklist.md) | Tester gate |
-| [`workshop/geo-notes.md`](workshop/geo-notes.md) | Short GEO module |
-| [`workshop/automation.md`](workshop/automation.md) | MCP + Playwright/axe fallback |
-| [`workshop/broken/`](workshop/broken/) | Intentional regressions for Labs A/B |
-
-### Lab flow (diagnose → remediate → verify)
-
-1. Serve the app (`python3 -m http.server 8080`).
-2. Activate broken files: `./workshop/broken/apply.sh`
-3. Lab A: find issues with AI + humans ([prompts](workshop/prompts.md), [expected failures](workshop/broken/EXPECTED_FAILURES.md) for facilitators).
-4. Lab B: fix, re-scan, keyboard-check ([verification checklist](workshop/verification-checklist.md)).
-5. Restore good files: `./workshop/broken/restore.sh`
-
-Optional scan (server must be running):
+With a server running on port 8080:
 
 ```bash
 npm install
@@ -106,7 +85,6 @@ MCP sample config: [`.mcp.json.example`](.mcp.json.example)
 | `js/` | Page behavior, nav, resource links, books store |
 | `assets/` | Images and icons |
 | `data/` | Seed book data |
-| `workshop/` | AI + a11y workshop handouts and broken lab |
 | `scripts/` | Optional Playwright + axe scan |
 | `.eslintrc.js` / `.prettierrc.json` | Lint and format config |
 | `.vscode/settings.json` | Format on save + ESLint for HTML/JS |
