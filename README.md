@@ -13,6 +13,7 @@ If you prefer Angular (CDK, router, forms, ESLint), see [a11y-angular-workshop](
 - Shared layout, design tokens, and navigation
 - ESLint (HTML + JS) and Prettier, with VS Code format-on-save
 - Unit tests (Vitest + vitest-axe) and E2E accessibility tests (Playwright + axe)
+- GitHub Action workflow for [github/accessibility-scanner](https://github.com/github/accessibility-scanner) (files issues, optional Copilot fixes)
 - Sample MCP config for an optional accessibility scanner
 
 ## Topics covered
@@ -118,6 +119,16 @@ Some showcase demos intentionally break WCAG rules; those cases use Playwright�
 
 MCP sample config: [`.mcp.json.example`](.mcp.json.example)
 
+## GitHub Accessibility Scanner
+
+Workflow: [`.github/workflows/a11y-scan.yml`](.github/workflows/a11y-scan.yml) — serves the static site on the Actions runner and scans app + “clean” showcase pages with [github/accessibility-scanner](https://github.com/github/accessibility-scanner). Findings become GitHub issues (optionally assigned to Copilot).
+
+**One-time setup**
+
+1. Create a [fine-grained PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token) with `actions: write`, `contents: write`, `issues: write`, `pull-requests: write`, and `metadata: read`, scoped to this repo.
+2. Add it as a repository secret named `GH_TOKEN` (Actions’ default `GITHUB_TOKEN` cannot be used).
+3. In **Actions → Accessibility Scanner → Run workflow**, start with **dry_run** enabled to preview findings, then run again with dry run off to file issues.
+
 ## Project layout
 
 | Path | Purpose |
@@ -133,6 +144,7 @@ MCP sample config: [`.mcp.json.example`](.mcp.json.example)
 | `e2e/` | Playwright accessibility tests (axe, keyboard, reflow, …) |
 | `tests/` | Vitest unit tests |
 | `playwright.config.mjs` | Playwright E2E config (static server on :8080) |
+| `.github/workflows/a11y-scan.yml` | GitHub accessibility-scanner Action |
 | `.eslintrc.js` / `.prettierrc.json` | Lint and format config |
 | `.vscode/settings.json` | Format on save + ESLint for HTML/JS |
 | `.mcp.json.example` | Sample MCP config for accessibility-scanner |

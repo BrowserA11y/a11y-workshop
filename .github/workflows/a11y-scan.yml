@@ -1,0 +1,119 @@
+# Scans the workshop site with GitHub's accessibility-scanner and files issues
+# for findings. Docs: https://github.com/github/accessibility-scanner
+#
+# One-time setup (repo admin):
+#   1. Create a fine-grained PAT with:
+#        actions: write, contents: write, issues: write,
+#        pull-requests: write, metadata: read
+#      Scoped to BrowserA11y/a11y-workshop.
+#   2. Add it as repository secret GH_TOKEN.
+#      Note: Actions' default GITHUB_TOKEN cannot be used here.
+#
+# Showcase demos that intentionally break WCAG are excluded by default so the
+# scanner does not flood Issues. Enable "include_intentional_violations" when
+# you want those pages scanned too.
+
+name: Accessibility Scanner
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Scan and log findings without filing/closing issues or writing cache"
+        type: boolean
+        default: false
+      skip_copilot_assignment:
+        description: "Skip assigning new issues to GitHub Copilot"
+        type: boolean
+        default: false
+      include_intentional_violations:
+        description: "Also scan showcase pages that intentionally fail axe"
+        type: boolean
+        default: false
+      group_by:
+        description: "How to consolidate findings into issues"
+        type: choice
+        options:
+          - rule
+          - finding
+          - rule+url
+        default: rule
+
+jobs:
+  accessibility_scanner:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Serve site locally
+        run: |
+          python3 -m http.server 8080 >/tmp/a11y-http.log 2>&1 &
+          for i in $(seq 1 30); do
+            if curl -sf "http://127.0.0.1:8080/pages/books.html" >/dev/null; then
+              echo "Static server is ready on :8080"
+              exit 0
+            fi
+            sleep 1
+          done
+          echo "Timed out waiting for local static server"
+          cat /tmp/a11y-http.log || true
+          exit 1
+
+      - name: Build URL configs
+        id: urls
+        env:
+          INCLUDE_INTENTIONAL: ${{ inputs.include_intentional_violations }}
+        run: |
+          # Pages that should pass automated checks (aligned with e2e/axe.spec.js).
+          CLEAN='[
+            {"url":"http://127.0.0.1:8080/pages/books.html","excludeSelectors":["iframe"]},
+            {"url":"http://127.0.0.1:8080/pages/about.html","excludeSelectors":["iframe"]},
+            {"url":"http://127.0.0.1:8080/pages/new-book.html","excludeSelectors":["iframe"]},
+            {"url":"http://127.0.0.1:8080/pages/details.html?id=9780071740647","excludeSelectors":["iframe"]},
+            {"url":"http://127.0.0.1:8080/showcases/index.html","excludeSelectors":["iframe"]},
+            {"url":"http://127.0.0.1:8080/showcases/high-contrast-mode.html","excludeSelectors":["iframe"]},
+            {"url":"http://127.0.0.1:8080/showcases/reflow-resize-and-spacing.html","excludeSelectors":["iframe"]}
+          ]'
+
+          INTENTIONAL='[
+            {"url":"http://127.0.0.1:8080/showcases/keyboard-navigation.html","excludeSelectors":["iframe"]},
+            {"url":"http://127.0.0.1:8080/showcases/accessible-name-and-description.html","excludeSelectors":["iframe"]},
+            {"url":"http://127.0.0.1:8080/showcases/semantic-html.html","excludeSelectors":["iframe"]},
+            {"url":"http://127.0.0.1:8080/showcases/aria.html","excludeSelectors":["iframe"]},
+            {"url":"http://127.0.0.1:8080/showcases/hiding-elements.html","excludeSelectors":["iframe"]},
+            {"url":"http://127.0.0.1:8080/showcases/live-regions.html","excludeSelectors":["iframe"]},
+            {"url":"http://127.0.0.1:8080/showcases/color-contrast-and-use-of-color.html","excludeSelectors":["iframe"]}
+          ]'
+
+          if [ "$INCLUDE_INTENTIONAL" = "true" ]; then
+            CONFIG=$(jq -c -n --argjson a "$CLEAN" --argjson b "$INTENTIONAL" '$a + $b')
+          else
+            CONFIG=$(jq -c -n --argjson a "$CLEAN" '$a')
+          fi
+
+          {
+            echo "url_configs<<EOF"
+            echo "$CONFIG"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+          echo "Scanning $(echo "$CONFIG" | jq 'length') URL(s)"
+          echo "$CONFIG" | jq -r '.[].url'
+
+      - name: Run accessibility scanner
+        uses: github/accessibility-scanner@v3
+        with:
+          url_configs: ${{ steps.urls.outputs.url_configs }}
+          repository: BrowserA11y/a11y-workshop
+          token: ${{ secrets.GH_TOKEN }}
+          cache_key: cached_results-a11y-workshop-${{ github.ref_name }}.json
+          group_by: ${{ inputs.group_by }}
+          dry_run: ${{ inputs.dry_run }}
+          skip_copilot_assignment: ${{ inputs.skip_copilot_assignment }}
+          include_screenshots: true
+          file_best_practice_issues: false
+          file_experimental_issues: false
+          scans: '["axe", "accesslint"]'
+          reduced_motion: no-preference
+          color_scheme: light
