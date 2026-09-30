@@ -114,6 +114,9 @@ jobs:
           include_screenshots: true
           file_best_practice_issues: false
           file_experimental_issues: false
-          scans: '["axe", "accesslint"]'
+          # AccessLint only: long rule ids (e.g. labels-and-names/label-content-mismatch)
+          # produce GitHub labels over the 50-char limit and fail filing.
+          # See: https://github.com/github/accessibility-scanner/issues
+          scans: '["axe"]'
           reduced_motion: no-preference
           color_scheme: light
